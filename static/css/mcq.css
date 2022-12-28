@@ -1,0 +1,74 @@
+body {
+  font-family: Montserrat, sans-serif;
+  background-color: #f5f5f5;
+}
+.tite {
+  padding: 40px 25px;
+}
+.option-list {
+  list-style-type: upper-alpha;
+}
+
+.cont {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-right: 1.9rem;
+  padding-bottom: 1rem;
+}
+
+.option-list li {
+  margin-right: 60rem;
+  background-color: #f5f5f5;
+  word-wrap: normal;
+  margin-bottom: 6px;
+  padding: 2px 2px 8px 4px;
+  font-weight: 500;
+}
+
+.back-button:link,
+:visited,
+:active {
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.question-list:not(:last-child) {
+  margin-bottom: 30px;
+}
+.down-content {
+  padding: 3rem 2rem;
+  border: 1px solid black;
+  margin-left: 50px;
+  margin-right: 30px;
+  background-color: white;
+}
+
+h6 {
+  background-color: #f5f5f5;
+  margin-right: 60rem;
+  border-left: 2px solid greenyellow;
+  padding: 2px 2px 8px 6px;
+  font-weight: 500;
+}
+
+hr {
+  border-top: 1px solid #8c8b8b;
+  margin-bottom: 3rem;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 700, "GRAD" 200, "opsz" 48;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 200, "opsz" 48;
+}
+
+#download {
+  padding: 5px 7px;
+  margin-right: 20px;
+}
+
+#button1 {
+  padding: 5px 7px;
+}

@@ -1,0 +1,251 @@
+{% extends 'index.html' %} {% block head %}
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{{ url_for('static',filename='css/quiz.css') }}" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+/>
+
+{% endblock %} {% block body %}
+
+<header class="header">
+  <div class="left-title"><h1>Quiz</h1></div>
+  <!-- <div class="right-title">Total Questions: <span id="tque"></span></div> -->
+  <!-- <div class="clearfix"></div> -->
+</header>
+<div class="main-head">
+  <h3>Quiz</h3>
+  <div class="timer">
+    <span class="timer__part timer__part--minutes">00</span>
+    <span class="timer__part">:</span>
+    <span class="timer__part timer__part--seconds">00</span>
+  </div>
+  <div class="question-count">
+    <span>Question </span><span id="curr"></span><span> of </span
+    ><span id="tque"></span>
+  </div>
+</div>
+<div class="main">
+  <div id="result" class="quiz-body">
+    <form name="quizForm" onSubmit="">
+      <fieldset class="form-group">
+        <h4><span id="qid">1.</span> <span id="question"></span></h4>
+        <div class="option-block-container" id="question-options"></div>
+      </fieldset>
+      <button name="previous" id="previous" class="btn btn-success">
+        Previous
+      </button>
+      &nbsp;
+      <button name="next" id="next" class="btn btn-success">Next</button>
+    </form>
+  </div>
+</div>
+
+<!-- End of content -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script>
+    var question = {{questions| safe}};
+    var answers = {{answers| safe}};
+    var options = {{options| safe}};
+    jsonObj = [];
+
+
+    for (let i = 0; i < question.length;i++){
+      quiz = {}
+      quiz['id'] = i +1;
+      quiz['question'] = question[i];
+      quiz['options'] = options[i];
+      quiz['answer'] = answers[i];
+      quiz['score'] = 0
+      quiz['status'] = ""
+
+      jsonObj.push(quiz)
+
+    }
+    const timer = document.querySelector(".timer")
+    const minutes = document.querySelector(".timer__part--minutes");
+    const seconds = document.querySelector(".timer__part--seconds");
+     var timeSecond =  jsonObj.length *45;
+
+
+  displayTime(timeSecond);
+
+  const countDown = setInterval(() => {
+    timeSecond--;
+    displayTime(timeSecond);
+    if (timeSecond <=0 || timeSecond < 1){
+      alertTime();
+      clearInterval(countDown);
+    }
+  },1000)
+
+  function displayTime(second){
+    const min = Math.floor(second / 60);
+    const sec = Math.floor(second % 60);
+    minutes.innerHTML = `${min<10 ? '0': ''}${min}`;
+    seconds.innerHTML = `${sec<10 ? '0': ''}${sec}`;
+
+  }
+
+  function alertTime(){
+    alert("Times up")
+  }
+
+  function endTime(){
+    timer.style.display = "none"
+
+  }
+    var quizApp = function () {
+    this.score = 0;
+    this.qno = 1;
+    this.currentque = 0;
+
+    var totalque = jsonObj.length;
+
+    this.displayQuiz = function (cque) {
+      this.currentque = cque;
+      if (this.currentque < totalque) {
+        $("#curr").html(cque+1);
+        $("#tque").html(totalque);
+        $("#previous").attr("disabled", false);
+        $("#next").attr("disabled", false);
+        $("#qid").html(jsonObj[this.currentque].id + ".");
+
+        $("#question").html(jsonObj[this.currentque].question);
+
+        $("#question-options").html("");
+
+        for (var key in jsonObj[this.currentque].options) {
+          if (jsonObj[this.currentque].options.hasOwnProperty(key)) {
+            $("#question-options").append(
+              "<div class='form-check option-block'>" +
+                "<label class='form-check-label'>" +
+                "<input type='radio' class='form-check-input' name='option'   id='q" +
+                key +
+                "' value='" +
+                jsonObj[this.currentque].options[key] +
+                "'><span id='optionval'>" +
+                jsonObj[this.currentque].options[key] +
+                "</span></label>"
+            );
+          }
+        }
+      }
+      if (this.currentque <= 0) {
+        $("#previous").attr("disabled", true);
+      }
+      if (this.currentque >= totalque) {
+        $("#next").attr("disabled", true);
+        for (var i = 0; i < totalque; i++) {
+          this.score = this.score + jsonObj[i].score;
+        }
+        return this.showResult(this.score);
+      }
+    };
+
+    this.showResult = function (scr) {
+      endTime()
+      $("#result").addClass("result");
+      $("#result").html(
+        "<h1 class='res-header'>Total Score: &nbsp;" +
+          scr +
+          "/" +
+          totalque +
+          "</h1>"
+      );
+      for (var j = 0; j < totalque; j++) {
+        var res;
+        if (jsonObj[j].score == 0) {
+          res =
+            '<span class="wrong">' +
+            jsonObj[j].score +
+            '</span><i class="fa fa-remove c-wrong"></i>';
+        } else {
+          res =
+            '<span class="correct">' +
+            jsonObj[j].score +
+            '</span><i class="fa fa-check c-correct"></i>';
+        }
+        $("#result").append(
+          '<div class="result-question"><span>Q ' +
+            jsonObj[j].id +
+            "</span> &nbsp;" +
+            jsonObj[j].question +
+            "</div>" +
+            "<div><b>Correct answer:</b> &nbsp;" +
+            jsonObj[j].answer +
+            "</div>" +
+            '<div class="last-row"><b>Score:</b> &nbsp;' +
+            res +
+            "</div>"
+        );
+      }
+    };
+
+    this.checkAnswer = function (option) {
+      var answer = jsonObj[this.currentque].answer;
+      option = option.replace(/\</g, "&lt;"); //for <
+      option = option.replace(/\>/g, "&gt;"); //for >
+      option = option.replace(/"/g, "&quot;");
+
+      if (option == jsonObj[this.currentque].answer) {
+        if (jsonObj[this.currentque].score == "") {
+          jsonObj[this.currentque].score = 1;
+          jsonObj[this.currentque].status = "correct";
+        }
+      } else {
+        jsonObj[this.currentque].status = "wrong";
+      }
+    };
+
+
+
+    this.changeQuestion = function (cque) {
+      this.currentque = this.currentque + cque;
+      this.displayQuiz(this.currentque);
+    };
+  };
+
+  var jsq = new quizApp();
+
+
+
+
+  var selectedopt;
+  $(document).ready(function () {
+    jsq.displayQuiz(0);
+
+    $("#question-options").on(
+      "change",
+      "input[type=radio][name=option]",
+      function (e) {
+
+        $(this).prop("checked", true);
+        selectedopt = $(this).val();
+      }
+    );
+  });
+
+  $("#next").click(function (e) {
+    e.preventDefault();
+    if (selectedopt) {
+      jsq.checkAnswer(selectedopt);
+    }
+    jsq.changeQuestion(1);
+  });
+
+  $("#previous").click(function (e) {
+    e.preventDefault();
+    if (selectedopt) {
+      jsq.checkAnswer(selectedopt);
+    }
+    jsq.changeQuestion(-1);
+  });
+</script>
+{% endblock %}

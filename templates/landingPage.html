@@ -1,0 +1,374 @@
+{% extends 'index.html' %} {% block head %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='css/landing.css') }}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='css/footer.css') }}"
+/>
+<script src="{{url_for('static', filename='js/landing.js')}}"></script>
+{% endblock %} {% block body %}
+<header class="main-header">
+  <div class="header-wrapper">
+    <div class="main-logo">MoGo</div>
+    <nav>
+      <ul class="main-menu">
+        <li><a href="{{ url_for('function')}}">About</a></li>
+        <li><a href="{{ url_for('mcq')}}">Service</a></li>
+        <!-- <li><a href="#section-7">Work</a></li> -->
+        <!-- <li><a href="#section-9">Blog</a></li> -->
+        <li><a href="{{ url_for('para')}}">Contact</a></li>
+        <li>
+          <a href="#"><span class="fa fa-shopping-cart"></span></a>
+        </li>
+        <li>
+          <a href="#"><span class="fa fa-search"></span></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section id="section-1">
+  <div class="content-slider">
+    <input
+      type="radio"
+      id="banner1"
+      class="sec-1-input"
+      name="banner"
+      checked
+    />
+    <input type="radio" id="banner2" class="sec-1-input" name="banner" />
+    <input type="radio" id="banner3" class="sec-1-input" name="banner" />
+    <input type="radio" id="banner4" class="sec-1-input" name="banner" />
+    <div class="slider">
+      <div id="top-banner-1" class="banner">
+        <div class="banner-inner-wrapper">
+          <div class="ban-wrap">
+            <h2>Creative Template</h2>
+            <h1>Welcome<br />to MoGo</h1>
+            <div class="line"></div>
+          </div>
+          <img
+            class="land__img"
+            src="https://plaraphy.com/lib_wfKJyoksALKsfAWv/ducg62tckz47evnt.png?w=900&h=400"
+            alt=""
+          />
+
+          <!-- <div class="learn-more-button">
+            <a href="#section-2">Learn More</a>
+          </div> -->
+        </div>
+      </div>
+      <div id="top-banner-2" class="banner">
+        <div class="banner-inner-wrapper">
+          <div class="ban-wrap">
+            <h2>What We Do</h2>
+            <h1>Great<br />MoGo</h1>
+            <div class="line"></div>
+          </div>
+          <img
+            class="land__img"
+            src="https://plaraphy.com/lib_wfKJyoksALKsfAWv/ducg62tckz47evnt.png?w=900&h=400"
+            alt=""
+          />
+
+          <!-- <div class="learn-more-button">
+            <a href="#section-4">Learn More</a>
+          </div> -->
+        </div>
+      </div>
+      <div id="top-banner-3" class="banner">
+        <div class="banner-inner-wrapper">
+          <div class="ban-wrap">
+            <h2>Here We Are</h2>
+            <h1>We Are<br />MoGo</h1>
+            <div class="line"></div>
+          </div>
+          <img
+            class="land__img"
+            src="https://plaraphy.com/lib_wfKJyoksALKsfAWv/ducg62tckz47evnt.png?w=900&h=400"
+            alt=""
+          />
+
+          <!-- <div class="learn-more-button">
+            <a href="#section-6">Learn More</a>
+          </div> -->
+        </div>
+      </div>
+      <div id="top-banner-4" class="banner">
+        <div class="banner-inner-wrapper">
+          <div class="ban-wrap">
+            <h2>Our Contacts</h2>
+            <h1>Welcome<br />to MoGo</h1>
+            <div class="line"></div>
+          </div>
+          <img
+            class="land__img"
+            src="https://plaraphy.com/lib_wfKJyoksALKsfAWv/ducg62tckz47evnt.png?w=900&h=400"
+            alt=""
+          />
+
+          <!-- <div class="learn-more-button">
+            <a href="#main-footer">Learn More</a>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- <nav>
+      <div class="controls">
+        <label for="banner1"
+          ><span class="progressbar"
+            ><span class="progressbar-fill"></span></span
+          ><span>01</span> Home</label
+        >
+        <label for="banner2"
+          ><span class="progressbar"
+            ><span class="progressbar-fill"></span></span
+          ><span>02</span> Service</label
+        >
+        <label for="banner3"
+          ><span class="progressbar"
+            ><span class="progressbar-fill"></span></span
+          ><span>03</span> About</label
+        >
+        <label for="banner4"
+          ><span class="progressbar"
+            ><span class="progressbar-fill"></span></span
+          ><span>04</span> Contacts</label
+        >
+      </div>
+    </nav> -->
+    <div class="header-design">
+      <footer class="footer-wave"></footer>
+      <div class="listar-map-button">
+        <div
+          class="listar-map-button-text"
+          style="display: inline-block; opacity: 1"
+        >
+          <span class="icon-map2"> How it Works? </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="wrap__feat">
+  <section class="feature__box">
+    <h1 class="section__title">
+      Reliable, efficient delivery
+      <span>Powered by Technology</span>
+    </h1>
+    <p class="section__desc">
+      Our Artificial Intelligence powered tools use millions of project data
+      points to ensure that your project is successful
+    </p>
+    <div class="features">
+      <div class="feature feature-one">
+        <h2 class="feature__title">Supervisor</h2>
+        <p class="feature__desc">
+          Monitors activity to identify project roadblocks
+        </p>
+        <img
+          class="feature__img"
+          src="https://kellychi22.github.io/frontend-mentor-solutions/10-four-card-feature-section/images/icon-supervisor.svg"
+          alt=""
+        />
+      </div>
+      <div class="wrapper">
+        <div class="feature feature-two">
+          <h2 class="feature__title">Team Builder</h2>
+          <p class="feature__desc">
+            Scans our talent network to create the optimal team for your project
+          </p>
+          <img
+            class="feature__img"
+            src="https://kellychi22.github.io/frontend-mentor-solutions/10-four-card-feature-section/images/icon-team-builder.svg"
+            alt=""
+          />
+        </div>
+        <div class="feature feature-three">
+          <h2 class="feature__title">Karma</h2>
+          <p class="feature__desc">
+            Regularly evaluates our talent to ensure quality
+          </p>
+          <img
+            class="feature__img"
+            src="https://kellychi22.github.io/frontend-mentor-solutions/10-four-card-feature-section/images/icon-karma.svg"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="feature feature-four">
+        <h2 class="feature__title">Calculator</h2>
+        <p class="feature__desc">
+          Uses data from past projects to provide better delivery estimates
+        </p>
+        <img
+          class="feature__img"
+          src="https://kellychi22.github.io/frontend-mentor-solutions/10-four-card-feature-section/images/icon-calculator.svg"
+          alt=""
+        />
+      </div>
+    </div>
+  </section>
+</div>
+<div class="know__more">
+  <div class="custom-shape-divider-top-1672031950">
+    <svg
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z"
+        class="shape-fill"
+      ></path>
+    </svg>
+    <div class="inner__block--more">
+      <img
+        src="
+  https://plaraphy.com/lib_jbNHCiIIrXAzpmCT/407o4ce7bbmxuwau.png?w=1200&h=500&fit=max"
+        alt="image-1"
+      />
+      <div class="wrapper__know__more">
+        <div class="second__half">
+          <h2>One of the best Text AI Tool</h2>
+
+          <div class="second__half--des">
+            <div class="icon--more"></div>
+            <div class="more__title"><h3>It takes seconds</h3></div>
+            <div class="more__des">
+              <p>
+                Paste the text in the given box, click Paraphrase and get your
+                paraphrased text back in a few seconds.
+              </p>
+            </div>
+          </div>
+          <div class="second__half--des">
+            <div class="icon--more"></div>
+            <div class="more__title"><h3>Plagiarism-free</h3></div>
+            <div class="more__des">
+              <p>
+                is a free paraphrasing tool that rewrites any text into a
+                plagiarism-free version of it. Whether for personal use or
+                professional purposes, Plaraphy is the smartest way to
+                paraphrase your text.
+              </p>
+            </div>
+          </div>
+          <div class="second__half--des">
+            <div class="icon--more"></div>
+            <div class="more__title">
+              <h3>Up to 1.000 characters at once</h3>
+            </div>
+            <div class="more__des">
+              <p>
+                Use this paraphrase software to rewrite up to 1.000 characters
+                at once. Write blog posts, articles, web copy, and more with
+                this highly useful paraphrasing tool.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <footer class="footer">
+  <div class="footer__row">
+    <div class="footer__row--card">
+      <div class="card__icon">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/3179/3179068.png"
+          alt=""
+        />
+      </div>
+      <div class="card__text">
+        <h4>Find us</h4>
+        <span>Ramnarain Ruia College, Matunga, Mumbai</span>
+      </div>
+    </div>
+
+    <div class="footer__row--card">
+      <div class="card__icon">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/597/597177.png"
+          alt=""
+        />
+      </div>
+      <div class="card__text">
+        <h4>Call us</h4>
+        <span>8976366576</span>
+      </div>
+    </div>
+    <div class="footer__row--card">
+      <div class="card__icon">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/2099/2099199.png"
+          alt=""
+        />
+      </div>
+      <div class="card__text">
+        <h4>Mail us</h4>
+        <span>ruiarepublic@gmail.com</span>
+      </div>
+    </div>
+  </div>
+
+   <div class="footer__logo-box">
+    <img src="img/logo_white.png" alt="Logo" class="footer__logo" />
+  </div> 
+  <div class="footer__row">
+    <div class="col-1-of-2">
+      <div class="footer__navigation">
+        <ul class="footer__list">
+          <li class="footer__item">
+            <a href="#" class="footer__link">Home</a>
+          </li>
+          <li class="footer__item">
+            <a href="#" class="footer__link">About us</a>
+          </li>
+          <li class="footer__item">
+            <a href="#" class="footer__link">Theme</a>
+          </li>
+          <li class="footer__item">
+            <a href="#" class="footer__link">Committee</a>
+          </li>
+          <li class="footer__item">
+            <a href="#" class="footer__link">Our Team</a>
+          </li>
+          <li class="footer__item">
+            <a href="#" class="footer__link">Contact us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-1-of-2">
+      <p class="footer__copyright">
+        © Copyright Ruia Republic, Ruia Mumbai. All Rights Reserved. <br />
+        Designed by
+        <a href="https://www.instagram.com/varun.kamble.9/" class="footer__link"
+          >Varun Kamble</a
+        >
+      </p>
+    </div>
+  </div>
+</footer> -->
+
+<script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+  integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
+  crossorigin="anonymous"
+></script>
+{% endblock %}
