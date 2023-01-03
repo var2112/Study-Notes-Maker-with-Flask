@@ -46,15 +46,7 @@ header a {
 header a:hover {
   color: #343436;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: verdana, sans-serif;
-  color: var(--primary-color);
-}
+
 mark {
   background-color: var(--shadow-blue-color);
   font-family: serif;
@@ -69,8 +61,13 @@ p {
   text-indent: 25px;
 }
 .container {
-  width: 90%;
+  width: 100%;
   margin: 20px auto;
+}
+
+.containery {
+  display: flex;
+  justify-content: space-between;
 }
 .pr-5 {
   display: flex;
@@ -97,6 +94,7 @@ p {
   justify-content: flex-start;
 }
 .progress-circle {
+  margin-right: 1rem;
   width: 120px;
   height: 100px;
 }
@@ -159,7 +157,8 @@ p {
 }
 
 /*editor layout & structure css*/
-.editor-container .editable_area,
+.editor-container .form-control-foo,
+.form-control-bar,
 .editor-container {
   transition-property: tab-size, -moz-tab-size, -o-tab-size;
   transition: tab-size, -moz-tab-size, -o-tab-size 0.2s ease;
@@ -262,7 +261,8 @@ p {
   font-size: 24px;
 }
 
-.editable_area,
+.form-control-foo,
+.form-control-bar,
 .linenumber {
   /*resize editor*/
   min-height: 300px !important;
@@ -319,6 +319,20 @@ h6 {
     transform: rotate(360deg);
   }
 }
+
+.edit-btn-1,
+.edit-btn-2 {
+  color: white;
+  background-color: #00af00;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  font-family: "Helvetica", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  margin-right: 10px;
+}
 /*end*/
 
 @media only screen and (min-width: 920px) {
@@ -333,6 +347,7 @@ h6 {
   .container {
     width: 90%;
   }
+
   .editor-toolbar button {
     background-size: 16px;
     padding: 10px 20px;

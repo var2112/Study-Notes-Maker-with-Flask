@@ -31,187 +31,238 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 
 {% endblock %} {% block body %}
-<div class="wrapper">
-  <div class="sidebar">
-    <div class="logo-details">
-      <i class="bx bxl-c-plus-plus"></i>
-      <span class="logo_name">MoGo</span>
-    </div>
-    <ul class="nav-links">
-      <li>
-        <a href="{{ url_for('function')}}">
-          <i class="bx bx-pie-chart-alt-2"></i>
-          <span class="link_name">Summarizer</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Summarizer</a></li>
-        </ul>
+<nav class="navbar navbar-expand-custom navbar-mainbg">
+  <a class="navbar-brand navbar-logo" href="#">Navbar</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <i class="bx bx-menu"></i>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <div class="hori-selector">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('function')}}"
+          ><i class="fas fa-tachometer-alt"></i>Summarizer</a
+        >
       </li>
-      <li>
-        <a href="{{ url_for('question')}}">
-          <i class="bx bx-line-chart"></i>
-          <span class="link_name">Questions</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Questions</a></li>
-        </ul>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('question')}}"
+          ><i class="far fa-address-book"></i>Questions</a
+        >
       </li>
-      <li>
-        <a href="{{ url_for('mcq')}}">
-          <i class="bx bx-pie-chart-alt-2"></i>
-          <span class="link_name">MCQs</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">MCQs</a></li>
-        </ul>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('mcq')}}"
+          ><i class="far fa-clone"></i>MCQs</a
+        >
       </li>
-      <li>
-        <a href="{{ url_for('para')}}">
-          <i class="bx bx-compass"></i>
-          <span class="link_name">Paraphraser</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Paraphraser</a></li>
-        </ul>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('para')}}"
+          ><i class="far fa-calendar-alt"></i>Paraphraser</a
+        >
       </li>
-      <li>
-        <a href="{{ url_for('citigen')}}">
-          <i class="bx bx-history"></i>
-          <span class="link_name">Citation Generator</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Citation Generator</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="{{ url_for('plag')}}">
-          <i class="bx bx-cog"></i>
-          <span class="link_name">Plagarism Checker</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Plagarism Checker</a></li>
-        </ul>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('plagarism')}}"
+          ><i class="far fa-chart-bar"></i>Plagarism Checker</a
+        >
       </li>
     </ul>
   </div>
+</nav>
+<div class="wrapper">
   <section class="home-section">
-    <div class="home-content">
+    <!-- <div class="home-content">
       <i class="bx bx-menu"></i>
-      <span class="text">Plagarism Checker</span> <br />
-    </div>
+      <span class="text">MCQs Gen</span> <br />
+    </div> -->
     <div class="main-content">
-      <section class="container">
-        <!-- similarity dectector -->
-        <div class="sd" style="width: 100%">
-          <div class="editor-container content">
-            <div class="editor-toolbar">
-              <div class="flex-layout">
-                <button class="edit-btn-1 flex-layout">
-                  <span class="material-icons"> text_fields </span>
-                  Box - 1
-                </button>
-                <button class="edit-btn-2 flex-layout">
-                  <span class="material-icons"> text_fields </span>
-                  Box - 2
-                </button>
-              </div>
-              <div class="pr-5">
-                <select
-                  id="Indent-mode"
-                  class="form-select ml-5"
-                  aria-label="Indent-mode"
-                >
-                  <optgroup label="Indent-mode">
-                    <option selected>Spaces</option>
-                    <option>Tabs</option>
-                  </optgroup>
-                </select>
-                <select
-                  id="Indent-size"
-                  class="form-select ml-5"
-                  aria-label="Indent-size"
-                >
-                  <optgroup label="Indent-size">
-                    <option>2</option>
-                    <option selected>4</option>
-                    <option>8</option>
-                  </optgroup>
-                </select>
-              </div>
-            </div>
-            <div class="editor-layout">
-              <div class="multiline-editor box-1">
-                <div class="foo"></div>
-                <div class="editor-status-bar">
-                  <span class="edited-info">Textbox - 1</span>
-                  <input type="file" id="file1" accept=".txt,.docx" hidden />
-                  <label for="file1">
-                    <span
-                      class="material-icons"
-                      style="color: grey; cursor: pointer"
-                    >
-                      note_add
-                    </span>
-                  </label>
-                </div>
-              </div>
-              <div class="multiline-editor box-2">
-                <div class="bar"></div>
-                <div class="editor-status-bar">
-                  <span class="edited-info">Textbox - 2</span>
-                  <input type="file" id="file2" accept=".txt,.docx" hidden />
-                  <label for="file2">
-                    <span
-                      class="material-icons"
-                      style="color: grey; cursor: pointer"
-                    >
-                      note_add
-                    </span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="data-process"
-            style="padding: 10px; display: grid; grid-gap: 10px"
-          >
-            <div class="flex-layout end">
-              <button class="btn" style="background: #00af00; color: #f1f1f1">
-                Process
-              </button>
-              <button
-                class="btn"
-                style="
-                  border: 0.2px solid #d1d1d1;
-                  box-shadow: none;
-                  color: var(--secondary-light-color);
-                "
-              >
-                Clear All
-              </button>
-            </div>
-            <div class="text-result flex-layout start" style="display: none">
-              <div class="progress-circle flex-layout center">
-                <svg>
-                  <!-- cx, cy, r => length from center -->
-                  <circle cx="30" cy="30" r="30" />
-                  <circle cx="30" cy="30" r="30" class="per" />
-                </svg>
-                <span class="percent"
-                  ><b>0</b>
-                  <i>%</i>
-                </span>
-              </div>
-              <div class="result flex-layout center" style="margin: auto"></div>
-            </div>
+      <div class="box red">
+        <div class="containery">
+          <h2>&nbsp; &nbsp; Check Plagarism</h2>
+          <div class="flex-layout">
+            <button class="edit-btn-1 flex-layout">
+              <!-- <span class="material-icons"> text_fields </span> -->
+              Box 1
+            </button>
+            <button class="edit-btn-2 flex-layout">
+              <!-- <span class="material-icons"> text_fields </span> -->
+              Box 2
+            </button>
           </div>
         </div>
-      </section>
+        <section class="container">
+          <!-- similarity dectector -->
+          <!-- <div class="sd" style="width: 100%"> -->
+          <div class="form-group" style="width: 100%">
+            <div class="editor-container content">
+              <!-- <div class="editor-toolbar">
+                <div class="flex-layout">
+                  <button class="edit-btn-1 flex-layout">
+                    <span class="material-icons"> text_fields </span>
+                    Box - 1
+                  </button>
+                  <button class="edit-btn-2 flex-layout">
+                    <span class="material-icons"> text_fields </span>
+                    Box - 2
+                  </button>
+                </div>
+              </div> -->
+              <div class="editor-layout">
+                <div class="multiline-editor box-1">
+                  <!-- <div class="foo"></div> -->
+                  <textarea
+                    class="form-control-foo"
+                    rows="3"
+                    name="quest_data"
+                  ></textarea>
+                  <div class="editor-status-bar">
+                    <span class="edited-info">Textbox - 1</span>
+                    <input type="file" id="file1" accept=".txt,.docx" hidden />
+                    <label for="file1">
+                      <span
+                        class="material-icons"
+                        style="color: grey; cursor: pointer"
+                      >
+                        note_add
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="multiline-editor box-2">
+                  <!-- <div class="bar"></div> -->
+                  <textarea
+                    class="form-control-bar"
+                    rows="3"
+                    name="quest_data"
+                  ></textarea>
+                  <div class="editor-status-bar">
+                    <span class="edited-info">Textbox - 2</span>
+                    <input type="file" id="file2" accept=".txt,.docx" hidden />
+                    <label for="file2">
+                      <span
+                        class="material-icons"
+                        style="color: grey; cursor: pointer"
+                      >
+                        note_add
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="data-process"
+              style="padding: 10px; display: grid; grid-gap: 10px"
+            >
+              <div class="flex-layout end">
+                <button class="btn" style="background: #00af00; color: #f1f1f1">
+                  Process
+                </button>
+                <button
+                  class="btn"
+                  style="
+                    border: 0.2px solid #d1d1d1;
+                    box-shadow: none;
+                    color: var(--secondary-light-color);
+                  "
+                >
+                  Clear All
+                </button>
+              </div>
+              <div class="text-result flex-layout start" style="display: none">
+                <div class="progress-circle flex-layout center">
+                  <svg>
+                    <!-- cx, cy, r => length from center -->
+                    <circle cx="30" cy="30" r="30" />
+                    <circle cx="30" cy="30" r="30" class="per" />
+                  </svg>
+                  <span class="percent"
+                    ><b>0</b>
+                    <i>%</i>
+                  </span>
+                </div>
+                <div
+                  class="result flex-layout center"
+                  style="margin: auto"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   </section>
 </div>
 
+<script>
+  function test() {
+    var tabsNewAnim = $("#navbarSupportedContent");
+    var selectorNewAnim = $("#navbarSupportedContent").find("li").length;
+    var activeItemNewAnim = tabsNewAnim.find(".active");
+    var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+    var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+    var itemPosNewAnimTop = activeItemNewAnim.position();
+    var itemPosNewAnimLeft = activeItemNewAnim.position();
+    $(".hori-selector").css({
+      top: itemPosNewAnimTop.top + "px",
+      left: itemPosNewAnimLeft.left + "px",
+      height: activeWidthNewAnimHeight + "px",
+      width: activeWidthNewAnimWidth + "px",
+    });
+    $("#navbarSupportedContent").on("click", "li", function (e) {
+      $("#navbarSupportedContent ul li").removeClass("active");
+      $(this).addClass("active");
+      var activeWidthNewAnimHeight = $(this).innerHeight();
+      var activeWidthNewAnimWidth = $(this).innerWidth();
+      var itemPosNewAnimTop = $(this).position();
+      var itemPosNewAnimLeft = $(this).position();
+      $(".hori-selector").css({
+        top: itemPosNewAnimTop.top + "px",
+        left: itemPosNewAnimLeft.left + "px",
+        height: activeWidthNewAnimHeight + "px",
+        width: activeWidthNewAnimWidth + "px",
+      });
+    });
+  }
+  $(document).ready(function () {
+    setTimeout(function () {
+      test();
+    });
+  });
+  $(window).on("resize", function () {
+    setTimeout(function () {
+      test();
+    }, 500);
+  });
+  $(".navbar-toggler").click(function () {
+    $(".navbar-collapse").slideToggle(300);
+    setTimeout(function () {
+      test();
+    });
+  });
+
+  // --------------add active class-on another-page move----------
+  jQuery(document).ready(function ($) {
+    // Get current path and find target link
+    var path = window.location.pathname.split("/").pop();
+
+    // Account for home page with empty path
+    if (path == "") {
+      path = "index.html";
+    }
+
+    var target = $('#navbarSupportedContent ul li a[href="' + path + '"]');
+    // Add active class to target link
+    target.parent().addClass("active");
+  });
+</script>
 <script>
   let arrow = document.querySelectorAll(".arrow");
   for (var i = 0; i < arrow.length; i++) {
@@ -258,38 +309,38 @@
 <script type="text/javascript">
   $(document).ready(function () {
     // editor initialization
-    var foo = new MiniEditor(".foo");
-    foo.build();
-    var bar = new MiniEditor(".bar");
-    bar.build();
+    // var foo = new MiniEditor(".foo");
+    // foo.build();
+    // var bar = new MiniEditor(".bar");
+    // bar.build();
 
     // editor tab & space indentation related functions
-    $("#Indent-mode").change(function () {
-      if (this.value == "Tabs") {
-        //enable tab spaces
-        jQuery(".editable_area").keydown(function (e) {
-          if (e.keyCode == 9 || e.which == 9) {
-            e.preventDefault();
-            var s = this.selectionStart;
-            this.value =
-              this.value.substring(0, this.selectionStart) +
-              "\t" +
-              this.value.substring(this.selectionEnd);
-            this.selectionEnd = s + 1;
-          }
-        });
-      } else {
-        jQuery(".editable_area").keydown(function (e) {
-          // allow default behaviour
-        });
-      }
-    });
-    $("#Indent-size").change(function () {
-      jQuery(".editable_area")
-        .css("tab-size", this.value)
-        .css("-moz-tab-size", this.value)
-        .css("-o-tab-size", this.value);
-    });
+    // $("#Indent-mode").change(function () {
+    //   if (this.value == "Tabs") {
+    //     //enable tab spaces
+    //     jQuery(".editable_area").keydown(function (e) {
+    //       if (e.keyCode == 9 || e.which == 9) {
+    //         e.preventDefault();
+    //         var s = this.selectionStart;
+    //         this.value =
+    //           this.value.substring(0, this.selectionStart) +
+    //           "\t" +
+    //           this.value.substring(this.selectionEnd);
+    //         this.selectionEnd = s + 1;
+    //       }
+    //     });
+    //   } else {
+    //     jQuery(".editable_area").keydown(function (e) {
+    //       // allow default behaviour
+    //     });
+    //   }
+    // });
+    // $("#Indent-size").change(function () {
+    //   jQuery(".editable_area")
+    //     .css("tab-size", this.value)
+    //     .css("-moz-tab-size", this.value)
+    //     .css("-o-tab-size", this.value);
+    // });
     // end
 
     // toggle editor tab
@@ -319,8 +370,8 @@
           .post({
             url: "/plag",
             data: JSON.stringify({
-              p: jQuery(".box-1 .editable_area")[0].value,
-              q: jQuery(".box-2 .editable_area")[0].value,
+              p: jQuery(".box-1 .form-control-foo")[0].value,
+              q: jQuery(".box-2 .form-control-bar")[0].value,
             }),
             contentType: "application/json",
             timeout: 5000,
@@ -358,8 +409,8 @@
 
     // clear editor content
     jQuery(".data-process .btn:last").click(function () {
-      jQuery(".box-1 .editable_area")[0].value = "";
-      jQuery(".box-2 .editable_area")[0].value = "";
+      jQuery(".box-1 .form-control-foo")[0].value = "";
+      jQuery(".box-2 .form-control-bar")[0].value = "";
       jQuery(".box-1 .linenumber")[0].value = "1";
       jQuery(".box-2 .linenumber")[0].value = "1";
       jQuery(".text-result").hide();
@@ -370,7 +421,7 @@
         var reader = new FileReader();
         // console.log(this.files[0]);
         reader.addEventListener("load", function () {
-          jQuery(".box-1 .editable_area")[0].value = reader.result;
+          jQuery(".box-1 .form-control-foo")[0].value = reader.result;
         });
         reader.readAsBinaryString(this.files[0]);
       }
@@ -380,7 +431,7 @@
         var reader = new FileReader();
         // console.log(this.files[0]);
         reader.addEventListener("load", function () {
-          jQuery(".box-2 .editable_area")[0].value = reader.result;
+          jQuery(".box-2 .form-control-bar")[0].value = reader.result;
         });
         reader.readAsBinaryString(this.files[0]);
       }
