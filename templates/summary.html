@@ -30,6 +30,13 @@
   >
 </div>
 <div class="cont">
+  <button
+    id="button1"
+    class="mui-btn mui-btn--raised mui-btn--primary"
+    onclick="CopyToClipboard('data')"
+  >
+    <i class="material-symbols-outlined"> content_copy </i>
+  </button>
   <button id="download" class="mui-btn mui-btn--raised mui-btn--primary">
     <i class="material-symbols-outlined"> download </i>
   </button>
@@ -39,4 +46,21 @@
   <hr />
   <p>{{result}}</p>
 </div>
+
+<script>
+  function CopyToClipboard(containerid) {
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      alert("Text has been copied, now paste in the text-area");
+    }
+  }
+</script>
 {% endblock %}

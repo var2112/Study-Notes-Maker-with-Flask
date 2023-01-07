@@ -405,6 +405,7 @@ button:hover .button-text {
 
 .container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 }
@@ -577,8 +578,12 @@ i {
   padding: 15px;
   color: #fff;
 }
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
 .navbar-mainbg {
-  background-color: #5161ce;
+  background-color: rgba(95, 10, 135);
   padding: 0px;
 }
 #navbarSupportedContent {
@@ -589,7 +594,7 @@ i {
   padding: 0px;
   margin: 0px;
 }
-#navbarSupportedContent ul li a i {
+#navbarSupportedContent ul li a ion-icon {
   margin-right: 10px;
 }
 #navbarSupportedContent li {
@@ -597,17 +602,19 @@ i {
   float: left;
 }
 #navbarSupportedContent ul li a {
-  color: rgba(255, 255, 255, 0.5);
+  align-items: center;
+
+  color: rgb(255, 255, 255);
   text-decoration: none;
   font-size: 15px;
-  display: block;
+  display: flex;
   padding: 20px 20px;
   transition-duration: 0.6s;
   transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   position: relative;
 }
 #navbarSupportedContent > ul > li.active > a {
-  color: #5161ce;
+  color: rgba(95, 10, 135);
   background-color: transparent;
   transition: all 0.7s;
 }
@@ -661,7 +668,7 @@ i {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #5161ce;
+  background-color: rgba(95, 10, 135);
 }
 .hori-selector .right:before {
   bottom: 0;
@@ -747,5 +754,17 @@ i {
   /* For mobile phones: */
   .main-content {
     padding: 0;
+  }
+
+  .box {
+    padding: 30px 15px;
+  }
+
+  .range__slider {
+    width: 100%;
+  }
+
+  .box .container {
+    justify-content: center;
   }
 }

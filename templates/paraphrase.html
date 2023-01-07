@@ -22,6 +22,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 
 {% endblock %} {% block body %}
+<div class="loader-container">
+  <div class="spinner"></div>
+</div>
 <nav class="navbar navbar-expand-custom navbar-mainbg">
   <a class="navbar-brand navbar-logo" href="#">Navbar</a>
   <button
@@ -41,27 +44,29 @@
       </div>
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('function')}}"
-          ><i class="fas fa-tachometer-alt"></i>Summarizer</a
+          ><ion-icon size="small" name="extension-puzzle"></ion-icon> &nbsp;
+          Summarizer</a
         >
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('question')}}"
-          ><i class="far fa-address-book"></i>Questions</a
+          ><ion-icon size="small" name="help"></ion-icon> &nbsp; Questions</a
         >
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('mcq')}}"
-          ><i class="far fa-clone"></i>MCQs</a
+          ><ion-icon size="small" name="apps"></ion-icon> &nbsp; MCQs</a
         >
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="{{ url_for('para')}}"
-          ><i class="far fa-calendar-alt"></i>Paraphraser</a
+          ><ion-icon size="small" name="sync"></ion-icon> &nbsp; Paraphraser</a
         >
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('plagarism')}}"
-          ><i class="far fa-chart-bar"></i>Plagarism Checker</a
+          ><ion-icon size="small" name="stats-chart"></ion-icon> &nbsp;
+          Plagarism Checker</a
         >
       </li>
     </ul>
@@ -83,7 +88,14 @@
           <div class="form-group">
             <div class="form-group-border">
               <br />
-              <textarea class="form-control" rows="3" name="para"></textarea>
+              <div class="copyboard">
+                <textarea class="form-control" rows="3" name="para"></textarea>
+                <ion-icon
+                  id="copyToClipboard-a"
+                  class="clipboard icon"
+                  name="clipboard-outline"
+                ></ion-icon>
+              </div>
               <br />
               <div class="editor-status-bar">
                 <!-- <span class="edited-info">Textbox - 1</span> -->
@@ -175,6 +187,20 @@
   });
 </script>
 <script>
+  const loaderContainer = document.querySelector(".loader-container");
+  const loadingButton = document.querySelector(".learn-more");
+  const displayLoading = () => {
+    loaderContainer.style.display = "block";
+  };
+
+  const hideLoading = () => {
+    loaderContainer.style.display = "none";
+  };
+
+  loadingButton.addEventListener("click", () => {
+    displayLoading();
+  });
+
   let arrow = document.querySelectorAll(".arrow");
   for (var i = 0; i < arrow.length; i++) {
     arrow[i].addEventListener("click", (e) => {
@@ -224,6 +250,22 @@
       }
     }
   });
+
+  document
+    .getElementById("copyToClipboard-a")
+    .addEventListener("click", async function () {
+      const text = await navigator.clipboard.readText();
+      const textArea = document.getElementById("data");
+      textArea.value = text;
+    });
 </script>
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+  nomodule
+  src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+></script>
 
 {% endblock %}

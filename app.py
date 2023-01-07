@@ -46,65 +46,80 @@ def question():
 
 @app.route('/quest_gen', methods=['POST', 'GET'])
 def quest_gen():
-    body = request.form['quest_data']
-    headers = {
-        'accept': 'application/json',
-        # requests won't add a boundary if this header is set when you pass files=
-        # 'Content-Type': 'multipart/form-data',
-    }
-    files = {
-        'input': (None, body),
-    }
-    response = requests.post(
-        'https://master-question-generation-wook-2.endpoint.ainize.ai/generate', headers=headers, files=files)
+    full_text = request.form['quest_data']
+    model = Summarizer()
+    result = model(full_text, min_length=60, max_length=500, ratio=0.4)
+    summarized_text = ''.join(result)
+    mcq_gen_1 = mcq_gen()
+    keywords = mcq_gen_1.get_nouns_multipartite(full_text)
+    # print(keywords)
+    filtered_keys = []
+    for keyword in keywords:
+        if keyword.lower() in summarized_text.lower():
+            filtered_keys.append(keyword)
+    sentences = mcq_gen_1.tokenize_sentences(summarized_text)
+    keyword_sentence_mapping = mcq_gen_1.get_sentences_for_keyword(
+        filtered_keys, sentences)
+    key_distractor_list = {}
 
-    d = response.json()
-    d1 = dict(list(d.items())[len(d)//2:])
-    d2 = dict(list(d.items())[:len(d)//2])
+    for keyword in keyword_sentence_mapping:
+        wordsense = mcq_gen_1.get_wordsense(
+            keyword_sentence_mapping[keyword][0], keyword)
+        if wordsense:
+            distractors = mcq_gen_1.get_distractors_wordnet(wordsense, keyword)
+            if len(distractors) == 0:
+                distractors = mcq_gen_1.get_distractors_conceptnet(keyword)
+            if len(distractors) != 0:
+                key_distractor_list[keyword] = distractors
+        else:
 
-    # print(d1)
+            distractors = mcq_gen_1.get_distractors_conceptnet(keyword)
+            if len(distractors) != 0:
+                key_distractor_list[keyword] = distractors
+    index = 1
+    question = []
+    question_opt = []
+    for each in key_distractor_list:
+        sentence = keyword_sentence_mapping[each][0]
+        pattern = re.compile(each, re.IGNORECASE)
+        output = pattern.sub(" _______ ", sentence)
+        question.append(output)
 
-    # Seperating question values
-    values_q = []
-    items = d1.items()
-    for item in items:
-        values_q.append(item[1])
-    # print(values_q)
+        print("%s)" % (index), output)
 
-    # Seperating answer values
-    values_a = []
-    items = d2.items()
-    for item in items:
-        values_a.append(item[1])
-    # print(values_a)
+        choices = [each.capitalize()] + key_distractor_list[each]
+        top4choices = choices[:4]
+        random.shuffle(top4choices)
+        optionchoices = ['a', 'b', 'c', 'd']
+        temp = []
 
-    # Removing the list for questions
-    new_dict_qus = values_q.pop(0)
-    # print(new_dict_qus)
+        for idx, choice in enumerate(top4choices):
+            print("\t", optionchoices[idx], ")", " ", choice)
+            temp.append("{0}".format(choice))
+            # temp.append("  {0} ) {1}".format(
+            #     optionchoices[idx], choice))
+        # temp.append("Answer: {0}".format(each))
+        temp.append(each)
+        # print(temp)
+        question_opt.append(temp)
 
-    # Removing the list for answers
-    new_dict_ans = values_a.pop(0)
-    # print(new_dict_ans)
+        index = index + 1
 
-    # Creating a list of values for questions
-    val_q = []
-    q_item = new_dict_qus.items()
-    for item in q_item:
-        val_q.append(item[1])
-    print(val_q)
+    print(question)
+    print(question_opt)
 
-    # Creating a list of values for answers
-    val_a = []
-    a_item = new_dict_ans.items()
-    for item in a_item:
-        val_a.append(item[1])
-    print(val_a)
+    res = {}
+    for key in question:
+        for value in question_opt:
+            res[key] = value
+            question_opt.remove(value)
+            break
+    print("=========== from mcq_gen")
+    print(res)
+    res_copy = res
+    session['mcq'] = res_copy
 
-    # Final dict
-    result = dict(zip(val_q, val_a))
-    print(result)
-
-    return render_template('generatedQuestion.html', result=result)
+    return render_template('generatedQuestion.html', result=res)
 
 
 @app.route('/citigen')

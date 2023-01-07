@@ -93,7 +93,7 @@ body a {
   color: #fff;
   /* 
   background-color: #5f0a87; */
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(95, 10, 135);
   /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -1365,5 +1365,15 @@ h6 {
 
   .feature-four {
     margin: auto 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .second__half {
+    padding: 3px 10px;
+  }
+  .inner__block--more {
+    /* padding-left: 10px; */
   }
 }

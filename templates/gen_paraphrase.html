@@ -7,36 +7,60 @@
   integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
   crossorigin="anonymous"
 />
-{% endblock %} {% block body %}
-<div class="row">
-  <div class="col-12 mb-4">
-    <div class="card border-light shadow-sm">
-      <div class="card-header">
-        <div class="row align-items-center">
-          <div class="col">
-            <h2 class="h5">Generated Parapharse Text</h2>
-          </div>
-        </div>
-      </div>
-      <div class="table-responsive">
-        <p>{{ result }}</p>
-        <!-- <table id="example" class="table align-items-center table-flush">
-          <thead>
-            <th>Question</th>
-            <th>Answer</th>
-          </thead>
-          <tbody>
-            {% for qa in cresults %}
-            <tr>
-              <td>{{ qa[0] }}</td>
-              <td>{{ qa[1] }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table> -->
-      </div>
-    </div>
-  </div>
-</div>
+<script src="{{url_for('static', filename='js/button.js')}}"></script>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/mcq.css') }}" />
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"
+  integrity="sha512-vNrhFyg0jANLJzCuvgtlfTuPR21gf5Uq1uuSs/EcBfVOz6oAHmjqfyPoB5rc9iWGSnVE41iuQU4jmpXMyhBrsw=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+<script src="//cdn.muicss.com/mui-0.10.3/extra/mui-combined.js"></script>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+/>
+
+{% endblock %} {% block body %}
+<div class="tite">
+  <a href="{{ url_for('function')}}" class="back-button"
+    >< Back to Paraphrase data</a
+  >
+</div>
+<div class="cont">
+  <button
+    id="button1"
+    class="mui-btn mui-btn--raised mui-btn--primary"
+    onclick="CopyToClipboard('data')"
+  >
+    <i class="material-symbols-outlined"> content_copy </i>
+  </button>
+  <button id="download" class="mui-btn mui-btn--raised mui-btn--primary">
+    <i class="material-symbols-outlined"> download </i>
+  </button>
+</div>
+<div class="down-content" id="data">
+  <h1>Paraphrased Data</h1>
+  <hr />
+  <p>{{result}}</p>
+</div>
+<script>
+  function CopyToClipboard(containerid) {
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      alert("Text has been copied, now paste in the text-area");
+    }
+  }
+</script>
 {% endblock %}

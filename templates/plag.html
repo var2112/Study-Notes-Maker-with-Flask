@@ -50,27 +50,29 @@
       </div>
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('function')}}"
-          ><i class="fas fa-tachometer-alt"></i>Summarizer</a
+          ><ion-icon size="small" name="extension-puzzle"></ion-icon> &nbsp;
+          Summarizer</a
         >
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('question')}}"
-          ><i class="far fa-address-book"></i>Questions</a
+          ><ion-icon size="small" name="help"></ion-icon> &nbsp; Questions</a
         >
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('mcq')}}"
-          ><i class="far fa-clone"></i>MCQs</a
+          ><ion-icon size="small" name="apps"></ion-icon> &nbsp; MCQs</a
         >
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('para')}}"
-          ><i class="far fa-calendar-alt"></i>Paraphraser</a
+          ><ion-icon size="small" name="sync"></ion-icon> &nbsp; Paraphraser</a
         >
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="{{ url_for('plagarism')}}"
-          ><i class="far fa-chart-bar"></i>Plagarism Checker</a
+          ><ion-icon size="small" name="stats-chart"></ion-icon> &nbsp;
+          Plagarism Checker</a
         >
       </li>
     </ul>
@@ -87,33 +89,13 @@
         <div class="containery">
           <h2>&nbsp; &nbsp; Check Plagarism</h2>
           <div class="flex-layout">
-            <button class="edit-btn-1 flex-layout">
-              <!-- <span class="material-icons"> text_fields </span> -->
-              Box 1
-            </button>
-            <button class="edit-btn-2 flex-layout">
-              <!-- <span class="material-icons"> text_fields </span> -->
-              Box 2
-            </button>
+            <button class="edit-btn-1 flex-layout">Box 1</button>
+            <button class="edit-btn-2 flex-layout">Box 2</button>
           </div>
         </div>
         <section class="container">
-          <!-- similarity dectector -->
-          <!-- <div class="sd" style="width: 100%"> -->
           <div class="form-group" style="width: 100%">
             <div class="editor-container content">
-              <!-- <div class="editor-toolbar">
-                <div class="flex-layout">
-                  <button class="edit-btn-1 flex-layout">
-                    <span class="material-icons"> text_fields </span>
-                    Box - 1
-                  </button>
-                  <button class="edit-btn-2 flex-layout">
-                    <span class="material-icons"> text_fields </span>
-                    Box - 2
-                  </button>
-                </div>
-              </div> -->
               <div class="editor-layout">
                 <div class="multiline-editor box-1">
                   <!-- <div class="foo"></div> -->
@@ -308,41 +290,6 @@
 
 <script type="text/javascript">
   $(document).ready(function () {
-    // editor initialization
-    // var foo = new MiniEditor(".foo");
-    // foo.build();
-    // var bar = new MiniEditor(".bar");
-    // bar.build();
-
-    // editor tab & space indentation related functions
-    // $("#Indent-mode").change(function () {
-    //   if (this.value == "Tabs") {
-    //     //enable tab spaces
-    //     jQuery(".editable_area").keydown(function (e) {
-    //       if (e.keyCode == 9 || e.which == 9) {
-    //         e.preventDefault();
-    //         var s = this.selectionStart;
-    //         this.value =
-    //           this.value.substring(0, this.selectionStart) +
-    //           "\t" +
-    //           this.value.substring(this.selectionEnd);
-    //         this.selectionEnd = s + 1;
-    //       }
-    //     });
-    //   } else {
-    //     jQuery(".editable_area").keydown(function (e) {
-    //       // allow default behaviour
-    //     });
-    //   }
-    // });
-    // $("#Indent-size").change(function () {
-    //   jQuery(".editable_area")
-    //     .css("tab-size", this.value)
-    //     .css("-moz-tab-size", this.value)
-    //     .css("-o-tab-size", this.value);
-    // });
-    // end
-
     // toggle editor tab
     jQuery(".edit-btn-1").click(function () {
       this.classList.add("active");
@@ -438,4 +385,12 @@
     });
   });
 </script>
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+  nomodule
+  src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+></script>
 {% endblock %}
