@@ -39,6 +39,11 @@ def function():
     return render_template('function.html')
 
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
 @app.route('/question')
 def question():
     return render_template('question.html')
@@ -289,6 +294,11 @@ def plag():
             'status': False,
             'result': "Error in processing"
         })
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 
 if __name__ == "__main__":

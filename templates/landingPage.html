@@ -9,24 +9,37 @@
   type="text/css"
   href="{{ url_for('static',filename='css/footer.css') }}"
 />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Allura&display=swap"
+  rel="stylesheet"
+/>
 <script src="{{url_for('static', filename='js/landing.js')}}"></script>
 {% endblock %} {% block body %}
 <header class="main-header">
   <div class="header-wrapper">
-    <div class="main-logo">MoGo</div>
+    <div class="main-logo">Snappi</div>
     <nav>
       <ul class="main-menu">
-        <li><a href="{{ url_for('function')}}">About</a></li>
-        <li><a href="{{ url_for('mcq')}}">Service</a></li>
-        <!-- <li><a href="#section-7">Work</a></li> -->
-        <!-- <li><a href="#section-9">Blog</a></li> -->
-        <li><a href="{{ url_for('para')}}">Contact</a></li>
+        <li><a href="{{ url_for('index')}}">Home</a></li>
+
         <li>
-          <a href="#"><span class="fa fa-shopping-cart"></span></a>
+          <div class="dropdown">
+            <button class="dropbtn">
+              SERVICE
+              <ion-icon name="chevron-down-outline"></ion-icon>
+            </button>
+            <div class="dropdown-content">
+              <a href="{{ url_for('function')}}">Summarizer</a>
+              <a href="{{ url_for('mcq')}}">MCQ Generator</a>
+              <a href="{{ url_for('para')}}">Paraphraser</a>
+              <a href="{{ url_for('question')}}">Question Generator</a>
+              <a href="{{ url_for('plagarism')}}">Plagiarism Checker</a>
+            </div>
+          </div>
         </li>
-        <li>
-          <a href="#"><span class="fa fa-search"></span></a>
-        </li>
+        <li><a href="{{ url_for('about')}}">About</a></li>
       </ul>
     </nav>
   </div>
@@ -49,7 +62,7 @@
         <div class="banner-inner-wrapper">
           <div class="ban-wrap">
             <h2>Creative Template</h2>
-            <h1>Welcome<br />to MoGo</h1>
+            <h1>Welcome<br />to Snappi</h1>
             <div class="line"></div>
           </div>
           <img
@@ -67,7 +80,7 @@
         <div class="banner-inner-wrapper">
           <div class="ban-wrap">
             <h2>What We Do</h2>
-            <h1>Great<br />MoGo</h1>
+            <h1>Great<br />Snappi</h1>
             <div class="line"></div>
           </div>
           <img
@@ -85,7 +98,7 @@
         <div class="banner-inner-wrapper">
           <div class="ban-wrap">
             <h2>Here We Are</h2>
-            <h1>We Are<br />MoGo</h1>
+            <h1>We Are<br />Snappi</h1>
             <div class="line"></div>
           </div>
           <img
@@ -103,7 +116,7 @@
         <div class="banner-inner-wrapper">
           <div class="ban-wrap">
             <h2>Our Contacts</h2>
-            <h1>Welcome<br />to MoGo</h1>
+            <h1>Welcome<br />to Snappi</h1>
             <div class="line"></div>
           </div>
           <img
@@ -360,7 +373,14 @@
     </div>
   </div>
 </footer> -->
-
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+  nomodule
+  src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+></script>
 <script
   src="https://code.jquery.com/jquery-3.6.1.js"
   integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="

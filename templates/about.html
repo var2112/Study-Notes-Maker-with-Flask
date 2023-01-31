@@ -1,0 +1,134 @@
+{% extends 'index.html' %} {% block head %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='css/landing.css') }}"
+/>
+<!-- <link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='css/footer.css') }}"
+/> -->
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='css/about.css') }}"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Allura&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
+  rel="stylesheet"
+/>
+
+<script
+  src="https://kit.fontawesome.com/8fe048c345.js"
+  crossorigin="anonymous"
+></script>
+<script src="{{url_for('static', filename='js/landing.js')}}"></script>
+{% endblock %} {% block body %}
+<header class="main-header">
+  <div class="header-wrapper">
+    <div class="main-logo">Snappi</div>
+    <nav>
+      <ul class="main-menu">
+        <li><a href="{{ url_for('index')}}">Home</a></li>
+
+        <li>
+          <div class="dropdown">
+            <button class="dropbtn">
+              SERVICE
+              <ion-icon name="chevron-down-outline"></ion-icon>
+            </button>
+            <div class="dropdown-content">
+              <a href="{{ url_for('function')}}">Summarizer</a>
+              <a href="{{ url_for('mcq')}}">MCQ Generator</a>
+              <a href="{{ url_for('para')}}">Paraphraser</a>
+              <a href="{{ url_for('question')}}">Question Generator</a>
+              <a href="{{ url_for('plagarism')}}">Plagiarism Checker</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="{{ url_for('function')}}">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main class="main-grid">
+  <div class="head">
+    <h1 class="page-title">We are Snappi</h1>
+    <p class="subtitle">This is an AI based project to help students.</p>
+  </div>
+  <img
+    class="main-image"
+    src="{{url_for('static', filename='img/about.png')}}"
+    alt="two men in a coworking space"
+  />
+
+  <div class="main-text">
+    <h2 class="section-title">For Acaedmic Year</h2>
+    <p>Helping students as well as teachers is our sole purpose.</p>
+    <p>
+      We have learned everything from scratch and spend sleepless nights to
+      learn all the fundamentals es well as the advanced stuff to study for our
+      exams. So we brought you a Application that can do all the stuff for you
+      from summarization to giving a quiz. We got it all.
+    </p>
+
+    <h2 class="section-title sub">Make Study Sheets</h2>
+    <p>
+      With the help of Snappi, we aim to make students life easier by creating
+      notes and questions through which they can get through their exams.
+    </p>
+    <p>
+      So sure, maybe we're a bit different from what you'd expect, but we are
+      sure of helping you with our wide varities of tools.
+    </p>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script>
+  var swiper2 = new Swiper(".swiper2", {
+    effect: "coverflow",
+    direction: "horizontal",
+    loop: true,
+    autoplay: {
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+    pagination: {
+      el: ".swiper-pagination1",
+      clickable: true,
+    },
+    coverflowEffect: {
+      slideShadows: false,
+      rotate: 20,
+      scale: 0.7,
+    },
+  });
+</script>
+
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+  nomodule
+  src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+  integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
+  crossorigin="anonymous"
+></script>
+{% endblock %}
